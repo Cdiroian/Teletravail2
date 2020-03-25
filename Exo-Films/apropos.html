@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Magnifilms</title>
+        <meta name="viewport" content="initial-scale=1">
+        <link href="css/normalize.css" rel="stylesheet" type="text/css" media="all">
+        <link href="css/styles.css" rel="stylesheet" type="text/css" media="all"> 
+        <script src="scripts/jquery.js"></script>
+        <script src="scripts/fitvids.js"></script>
+        <script>
+           $(document).ready(function() {
+                 $(".video").fitVids();
+                
+                ajouter_bt_menu();
+                maj_menu();
+                
+            });
+            
+            $(window).resize(function() {
+                  maj_menu();
+            });
+            
+            function ajouter_bt_menu(){
+                $('#mainNav ul').before('<div id="bt_menu">☰</div>');
+                $("#bt_menu").click(function(){
+                    $("#mainNav ul").toggle();
+                });
+            }
+            
+            function maj_menu(){	
+                var sw = document.body.clientWidth;
+                if (sw < 480) {
+                    $("#bt_menu").show();
+                    $("#mainNav ul").hide();
+                }
+                if (sw >= 480) {
+                    $("#bt_menu").hide();
+                    $("#mainNav ul").show();
+                }
+            }
+    
+         </script>
+        <!--[if IE]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="scripts/respond.js"></script>
+        <![endif]-->
+        <script src="scripts/matchmedia.js"></script>
+        <script src="scripts/picturefill.js"></script>
+    </head>
+    <body>
+        <header id="mainHeader">
+            <div id="logo"><a href="#"><img src="images/logo.png" alt="magnifilms"></a></div>
+          <hgroup>	
+              <h1>Magnifilms</h1>
+                  <h2>des films magnifiques</h2>
+            </hgroup>
+        </header>
+
+        <div id="topImage">
+            <div data-picture data-alt="Bandeau">
+                <div data-src="images/hollywood_500.jpg"></div>
+                <div data-src="images/hollywood_1000.jpg" data-media="(min-width: 490px)"></div>
+                <div data-src="images/hollywood_1280.jpg" data-media="(min-width: 1000px)"></div>
+                <!-- Quand le JS est désactivé -->
+                <noscript><img src="images/hollywood_1280.jpg" alt="bandeau"></noscript>
+            </div>
+        </div>
+
+        <nav id="mainNav">
+            <h1>Menu</h1>
+             <ul>
+               <li class="active"><a href="#" title="Mes dernières trouvailles">Mes dernières trouvailles</a> </li>
+               <li><a href="apropos.html" title="A propos">A propos</a></li>
+	    <li><a href="contact.html" title="Contact">Contact</a></li>
+             </ul>
+        </nav>
+        
+        <div id="content">
+            <section id="films">
+                <h3>A propos</h3>
+
+                <h4>Le staff</h4>
+                <table id="aproposTable">
+                    <thead>
+                        <tr>
+                            <th>Prénom</th>
+                            <th>Nom</th>
+                            <th>E-mail</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>John</td>
+                            <td>Doe</td>
+                            <td>john.doe@gmail.com</td>
+                        </tr>
+                        <tr>
+                          <td>Jane</td>
+                          <td>Doe</td>
+                          <td>jane.doe@gmail.com</td>
+                        </tr>
+                        </tbody>
+                </table>
+            </section>
+        </div>
+        <footer id="pageFooter"><h2>Copyright</h2><p>Copyright</p></footer>
+    </body>
+</html>
