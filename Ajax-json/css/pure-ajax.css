@@ -1,0 +1,10 @@
+th, td {
+  border: 1px solid #111;
+  margin: 3px;
+  padding: 3px;
+}
+
+button {
+  margin: 1px 5px;
+  cursor:pointer;
+}
