@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Grille BootStrap</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+    </head>
+    <body>
+        <header class="row">
+            <div class="col-sm-12">
+                EN TETE
+            </div>
+
+        </header>
+        <div class="row">
+            <nav class="col-xs-2">
+                Menu
+            </nav>
+            <section class="col-xs-10">
+                <form role="form" class="form-inline" id="form1" action="traitement.php" method="get" enctype="multipart/form-data">
+                    <div class="form-group" data-toggle="buttons">
+                        <label class="btn btn-primary active">
+                            <input type="radio" name="hangar" id="ouvert" autocomplete="off" checked="checked"> <img src="couvert2.jpg"
+                                style="margin-right: 10px">Ouvert
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="radio" name="hangar" id="fermer" autocomplete="off"><img
+                                src="choix_abrisV2.jpg" style="margin-right: 10px">Fermer
+                        </label>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="form-group">
+                        <label class="form-control" for="date">Date debut : </label>
+                        <input type="date" class="date-picker" id="date">
+                    </div>
+                </form>
+                <div class="row">
+                    <article class="col-md-10">
+                        Article
+                    </article>
+                    <aside class="col-md-2">
+                        Aside
+                    </aside>
+                </div>
+            </section>
+        </div>
+        <footer class="row">
+            <div class="col-sm-12">
+                Pied de page1
+            </div>
+        </footer>
+    </body>
+</html>
