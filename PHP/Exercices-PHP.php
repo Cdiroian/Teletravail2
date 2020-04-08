@@ -59,12 +59,12 @@
             }
             echo "La valeur (S) est de : ".$somme;
 
-            // Exercice 4
+            // Exercice 5
             echo "<br /><br />"."<strong>Exercice 5 </strong>"."<br /><br />" ;
 
             $tabBannieres = array(
-                1 => array ('http://www.mon_site.fr'
-                ,'http://www.mon_site.fr/banniere.gif'.'Description 1'),
+                1 => array ('https://www.japscan.co/'
+                ,'https://www.japscan.co/banniere.gif'.'Description 1'),
                 2 => array ('http://www.mon_site.fr2'
                 ,'http://www.mon_site.fr2/banniere.gif'.'Description 2'),
                 3 => array ('http://www.mon_site.com'
@@ -74,8 +74,44 @@
             $choisir = array_rand($tabBannieres, 1);
             //affichage des bannières
             echo '<a href="', $tabBannieres[$choisir][0], '" title="',
-            $tabBannieres[$choisir][2], '" > "';
-            
+            $tabBannieres[$choisir][2], '" > ';
+            echo '<img src="', $tabBannieres[$choisir][1], '" alt="',
+            $tabBannieres[$choisir][2], '" />';
+            echo '</a>';
+
+            //Exercice 3
+            echo "<br /><br />"."<strong>Exercice 3 </strong>"."<br /><br />" ;
+
+            $tabCaract_chevalier = array("prénom" => "Philippe",
+            "profession" => "Humoriste", "age" => 64);
+            $tabCaract_dalton = array("prénom" => "Joe",
+            "profession" => "Bandit", "age" => 38);
+            $tab_personne['CHEVALIER'] = $tabCaract_chevalier;
+            $tab_personne['DALTON'] = $tabCaract_dalton;
+            echo '<table border="1">';
+            echo '<tr><td>';
+            echo 'Clé';
+            echo '</td><td colspan ="3">';
+            echo 'Valeur';
+            echo '</td></tr>';
+
+            foreach($tab_personne as $cle => $val) {
+                $nbLigne = count ($val)+1;
+
+                echo'<tr><td rowspan="'.$nbLigne.'">';
+                echo $cle;
+                echo '</td>';
+                echo '<td>Clé</td><td>Valeur</td></tr>';
+
+                foreach($val as $cle2 => $val2) {
+                    echo '<tr>';
+                    echo '<td>'.$cle2.'</td>';
+                    echo '<td>'.$val2.'</td>';
+                    echo '</tr>';
+                }
+            }
+
+            echo '</table>';
           ?> 
     </body> 
 </html>
