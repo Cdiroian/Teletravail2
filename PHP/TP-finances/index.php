@@ -24,26 +24,19 @@
   <?php
 
   require_once("class-models/service_financier.php");
+  $res='0';
 
+  if(isset($_GET["kal"]) && isset($_GET["ta"])&& isset($_GET["an"]) )
+	  {
 
-
-/*function calculmensualite ($_K,$_ta,$_an){
-        $tm =(double)$_ta/(12*100);
-        $n = $_an*12;
-		$Q=(1- pow((1+$tm),-$n) );
-		$mensualite=($_K*$tm)/$Q;
-       
-
-        return $mensualite;
-}
-  $res='';
-  if(isset($_GET["kal"]) && isset($_GET["ta"]) && isset($_GET["an"]))
-  {    
-  $res = calculmensualite($_GET["kal"],$_GET["ta"],$_GET["an"]);
-  }
-  else {/*echo "erreur";}*/
-//echo $res;
-
+      $monFinancier= new financier($_GET["kal"],$_GET["ta"],$_GET["an"]);
+  
+      $res = $monFinancier->calculMensualite();
+    }
+    else
+    {
+    echo"calcul mensualité empossible, manque de données....";
+    }
 ?>
  
   
@@ -75,30 +68,16 @@
   <label >Mensualité en €:</label>
     <input type="text" class="form-control" value="<?php echo(!empty($res))? round($res,2)." €": "NaN"  ?>" id="mens" name="mens" disabled=" disabled">
   </div>
+  <div class="form-group" id="coutTotal" >
+  <label >Cout toltal du crédit:</label>
+    <input type="text" class="form-control" value="<?php echo(!empty($res))? round($res,2)." €": "NaN"  ?>" id="ctt" name="ctt" disabled=" disabled">
+  </div>
   <fieldset>
 </form>
 <form>
 <fieldset>
   
 </fieldset></form>
-
-<?php
-$res='0';
-
-if(isset($_GET["kal"]) && isset($_GET["ta"])&& isset($_GET["an"]) )
-	{
-
-    $monFinancier= new financier($_GET["kal"],$_GET["ta"],$_GET["an"]);
-  
-    $res = $monFinancier->calculMensualite();
-  }
-  else
-  {
-    echo"calcul mensualité empossible, manque de données....";
-  }
-	
-?>
-
 
 <?php 
 
@@ -113,7 +92,7 @@ echo '<table class="table table-dark table-hover" >
           </tr>
         </thead>
         <tbody>';
-	$k=0;	//capital restant du... 
+	$k=0;	//capital restant ... 
 	
 	
   if(isset($_GET["kal"]) && isset($_GET["ta"])&& isset($_GET["an"]) )
