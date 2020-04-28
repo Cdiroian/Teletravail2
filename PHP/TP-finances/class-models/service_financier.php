@@ -20,7 +20,6 @@ class financier
        /*(1- pow((1+$tm),-$n) )*/
         $quotient=(1- pow(( 1+$this->tauxMensuel),-$this->nbMois));
         $mensualite=($this->capital*$this->tauxMensuel)/$quotient;
-        $coutTotal= (($mensualite*($this->nbMois*12))-$this->capital)+$this->capital;
         return $mensualite;
     }
 
@@ -28,11 +27,9 @@ class financier
     {
         /*le coût total est, bien sûr, égal à :
         C = M*an - S */
-        
-        $coutTotal= ($mensualite*($this->nbMois*12))-$this->capital;
+        $coutTotal= ($mensualite * $this->nbMois)-$this->capital;
 
         return $coutTotal;
     } 
 }
-
 ?>

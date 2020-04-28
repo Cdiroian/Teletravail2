@@ -17,6 +17,8 @@
 	#btnsub { width:100%; text-align:right}
 	#echeance {width:100%; text-align:left}
 	#echeance input[type='text'] { width:40%;}
+  #coutTotal {width:100%; text-align:left}
+	#coutTotal input[type='text'] { width:40%;}
     </style>
   </head>
   
@@ -25,13 +27,17 @@
 
   require_once("class-models/service_financier.php");
   $res='0';
-
+  $ctt='0';
   if(isset($_GET["kal"]) && isset($_GET["ta"])&& isset($_GET["an"]) )
 	  {
 
       $monFinancier= new financier($_GET["kal"],$_GET["ta"],$_GET["an"]);
   
       $res = $monFinancier->calculMensualite();
+      
+      $ctt = $monFinancier->coutTotal();
+      
+      
     }
     else
     {
@@ -60,17 +66,19 @@
       <input class="form-check-input" type="checkbox">Tableau d'amortissement.
     </label>
   </div>
- <div class="form-group form-button" id="btnsub" >
-  <button type="submit" class="btn btn-primary">Submit</button>
-</div>
+  <div class="form-group form-button" id="btnsub" >
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
 
-<div class="form-group" id="echeance" >
-  <label >Mensualité en €:</label>
-    <input type="text" class="form-control" value="<?php echo(!empty($res))? round($res,2)." €": "NaN"  ?>" id="mens" name="mens" disabled=" disabled">
+  <div class="form-group" id="echeance" >
+    <label >Mensualité en €:</label>
+    <input type="text" class="form-control" value="<?php echo(!empty($res))? 
+    round($res,2)." €": "NaN"  ?>" id="mens" name="mens" disabled=" disabled">
   </div>
   <div class="form-group" id="coutTotal" >
-  <label >Cout toltal du crédit:</label>
-    <input type="text" class="form-control" value="<?php echo(!empty($res))? round($res,2)." €": "NaN"  ?>" id="ctt" name="ctt" disabled=" disabled">
+    <label >Cout total du crédit:</label>
+    <input type="text" class="form-control" value="<?php echo(!empty($ctt))? 
+    round($ctt,2)." €": "NaN"  ?>" id="ctt" name="ctt" disabled=" disabled">
   </div>
   <fieldset>
 </form>
@@ -101,12 +109,13 @@ echo '<table class="table table-dark table-hover" >
 $compteur=1;	
   $tm =(double)($_GET["ta"])/(12*100);         
 
-do{ echo "<tr>"; $part_int=$k*$tm;//calcul de la part intérêt
-	$part_kal=$res-$part_int; //calcul de la part capital
+do{ 
+  echo "<tr>"; $part_int=$k*$tm;//calcul part intérêt
+	$part_kal=$res-$part_int; //calcul part capital
 	
 	if($compteur==1)
 	{
-	$k=$_GET["kal"];//calcul du capital restant dû
+	$k=$_GET["kal"];//calcul capital restant dû
 	}else 
 	{$k=$k-$part_kal;
 		}
