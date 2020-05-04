@@ -20,30 +20,68 @@
   
   <body>
   <?php
-    // echo'Identifiant ou Mot de passe incorrect !! ';
+    
+    $connex = @mysqli_connect("localhost","root","","guide") or die("Erreur de connexion !!!!");
 
-    echo
-    '
+    $res = mysqli_query($connex,"select * from restaurant");
+    echo mysqli_num_rows($res)."enregistrement(s) dans la table";
+    echo "<hr/>";
+    while($tab=mysqli_fetch_assoc($res)){
+
+      echo implode("----",$tab);
+      echo "<br />";
+    }
+
+   /* '
     <form  action="'.$_SERVER['PHP_SELF'].'" method="POST" enctype="multipart/form-data">
       <fieldset><legend>ACCES MEMBRE</legend>	
         <div class="form-group">
-          <label for="identifiant">Email : </label>
+          <label for="identifiant">Identifiant : </label>
 
-          <input type="text" class="form-control"  id="identifiant" name="identifiant" placeholder="votre mail" />
+          <input type="text" class="form-control"  id="identifiant" name="identifiant" placeholder="identifiant restaurant" />
 
         </div>
         <div class="form-group">
-          <label for="pwd" >Mot de passe : </label>
+          <label for="nom" >Nom : </label>
        
-          <input class="form-control" type="password" id="pwd" name="pwd" value="" placeholder="password"  />
+          <input class="form-control" type="text" id="nom" name="nom" value="" placeholder="nom restaurant"  />
 
         </div>
-                
+        <div class="form-group">
+          <label for="address" >adresse : </label>
+       
+          <input class="form-control" type="text" id="address" name="address" value="" placeholder="addresse restaurant"  />
+
+        </div>
+        <div class="form-group">
+          <label for="prix" >Prix (en €) : </label>
+       
+          <input class="form-control" type="text" id="prix" name="prix" value="" placeholder="prix moyen restaurant"  />
+
+        </div>
+        <div class="form-group">
+          <label for="coment" >commentaire : </label>
+       
+          <input class="form-control" type="text" id="coment" name="coment" value="" placeholder="commentaire restaurant"  />
+
+        </div>
+        <div class="form-group">
+          <label for="note" >note : </label>
+       
+          <input class="form-control" type="text" id="note" name="note" value="" placeholder="note restaurant"  />
+
+        </div>
+        <div class="form-group">
+          <label for="date" >adresse : </label>
+       
+          <input class="form-control" type="date" id="date" name="date" value="" placeholder="date comentaire"  />
+
+        </div>
         <div class="form-group form-button" id="btnsub" >				  
           <button type="submit" class="btn btn-primary">Submit</button>
         </div>
       </fieldset>
-    </form>';
+    </form>'; */
   ?>
 
    <!-- Optional JavaScript -->
