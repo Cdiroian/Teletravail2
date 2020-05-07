@@ -21,16 +21,7 @@
   <body>
   <?php
     
-    $connex = @mysqli_connect("localhost","root","","guide") or die("Erreur de connexion !!!!");
-
-    $res = mysqli_query($connex,"select * from restaurant");
-    echo mysqli_num_rows($res)."enregistrement(s) dans la table";
-    echo "<hr/>";
-    while($tab=mysqli_fetch_assoc($res)){
-
-      echo implode("----",$tab);
-      echo "<br />";
-    }
+    require_once("class-metier/base.php");
 
    /* '
     <form  action="'.$_SERVER['PHP_SELF'].'" method="POST" enctype="multipart/form-data">
