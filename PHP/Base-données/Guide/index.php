@@ -21,58 +21,92 @@
   <body>
   <?php
     
-    require_once("class-metier/base.php");
+    session_start();
 
-   /* '
-    <form  action="'.$_SERVER['PHP_SELF'].'" method="POST" enctype="multipart/form-data">
-      <fieldset><legend>ACCES MEMBRE</legend>	
-        <div class="form-group">
-          <label for="identifiant">Identifiant : </label>
+    include("class-metier/base.php");
+    
 
-          <input type="text" class="form-control"  id="identifiant" name="identifiant" placeholder="identifiant restaurant" />
+    $monObjetTable=new Mytable("restaurants");
 
-        </div>
-        <div class="form-group">
-          <label for="nom" >Nom : </label>
-       
-          <input class="form-control" type="text" id="nom" name="nom" value="" placeholder="nom restaurant"  />
+    $monObjetTable->affichContenuTable();
+    $options=array(
 
-        </div>
-        <div class="form-group">
-          <label for="address" >adresse : </label>
-       
-          <input class="form-control" type="text" id="address" name="address" value="" placeholder="addresse restaurant"  />
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, 
+    PDO::ATTR_CASE =>  PDO::CASE_NATURAL,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_NUM
+    );
 
-        </div>
-        <div class="form-group">
-          <label for="prix" >Prix (en €) : </label>
-       
-          <input class="form-control" type="text" id="prix" name="prix" value="" placeholder="prix moyen restaurant"  />
+    $db="";
+    
+    try{
+      $db = new PDO('mysql:host=localhost; dbname=guide','root','', $options);
+    } catch ( PDOException $e)
+    {
+      die("Database connection failded". $e->getMessage());
 
-        </div>
-        <div class="form-group">
-          <label for="coment" >commentaire : </label>
-       
-          <input class="form-control" type="text" id="coment" name="coment" value="" placeholder="commentaire restaurant"  />
+      echo $e-> getMessage();
+    }
 
-        </div>
-        <div class="form-group">
-          <label for="note" >note : </label>
-       
-          <input class="form-control" type="text" id="note" name="note" value="" placeholder="note restaurant"  />
+    /* function cherchNomCol ($_table)
+    {
+      $rq="select * from".$_table;
+        $resultat=$_db->query($rq);
+        $select_messages=$_db->execute();
+        $nbCol=$resultat->columnCount();
+        $tabNomCol=array();
+        for($i=0; $i<$nbCol;$i++){
+          $tab=$resultat->getColumnMeta($i);
 
-        </div>
-        <div class="form-group">
-          <label for="date" >adresse : </label>
-       
-          <input class="form-control" type="date" id="date" name="date" value="" placeholder="date comentaire"  />
+          $tabNomCol[$i]=$tab['name'];
+        }
+        //echo var_dump($tabNomCol);
 
-        </div>
-        <div class="form-group form-button" id="btnsub" >				  
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-      </fieldset>
-    </form>'; */
+        return $tabNomCol;
+    } */
+
+
+    
+   /*  function afficherTable($_table,$_db){
+
+      echo'<tble classe="table-dark tablehover" >
+      <tbody>';
+      
+      $tabNoms= cherchNomCol($_table,$_db);
+
+      
+      echo "<th>".$tabNoms."</th>";
+      
+      $rq="select * from".$_table;
+      $select_messages=$db->prepare($rq);
+        $select_messages->execute();
+
+      
+      while($tabligne=$select_messages->fetch())
+      {
+        echo"<tr>";
+
+        for($i=0; $i<sizeof($tabligne);$i++){
+
+          if($i==3)
+          {
+            
+            echo"<td>".$tabLigne[$i]."</td>";
+
+          }
+          else{
+            echo"<td>".$tabLigne[$i]."</td>";
+          }
+          
+          echo"<td>".$tabligne[$i]."</td>";
+        }
+
+        echo "</tr>";
+      }
+
+
+      echo' </tbody></table>';
+    } */
+   
   ?>
 
    <!-- Optional JavaScript -->

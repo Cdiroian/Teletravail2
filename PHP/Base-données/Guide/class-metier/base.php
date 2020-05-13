@@ -1,25 +1,110 @@
 <?php
-
-
-class myTable{
   
-  public $connex;
-
-  public function getConnex(){
-
-    $connex = @mysqli_connect("localhost","root","","guide") or die("Erreur de connexion !!!!");
-
-    $res = mysqli_query($connex,"select * from restaurant");
-    echo mysqli_num_rows($res)."enregistrement(s) dans la table";
-    echo "<hr/>";
-    while($tab=mysqli_fetch_assoc($res)){
+  class myTable
+  {
   
-      echo implode("----",$tab);
-      echo "<br />";
-  
+    protected $db;
+    private $res_exec;
+    //public $tabCols;
+    
+    public function __construct($_table)
+    {
+      $this->db=self::dbconnection();
+      $this->res_exec=$this->db->prepare(" select * from ".$_table);
+      $this->res_exec->execute();
+
+    }
+
+
+    public static function dbconnection()
+    {
+      try
+      {
+        return new PDO('mysql:host=localhost;dbname=guide','root','', array(
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, 
+        PDO::ATTR_CASE =>  PDO::CASE_NATURAL,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_NUM));
+      } catch ( PDOException $e) {
+
+        die("Database connection failded". $e->getMessage());
+
+        return "erreur connexion";
+
+        echo $e-> getMessage();
+      }
+    }
+
+    public function cherchNomCol($_table,$_db){
+
+      //travail a faire
+      $rq=" select * from ".$_table;
+          $resultat=$_db->query($rq);
+          $select_messages=$_db->execute();
+          $nbCols=$resultat->columnCount();
+          $tabNomCol=array();
+          for($i=0; $i<$nbCols;$i++){
+            $tab=$resultat->getColumnMeta($i);
+
+          $tabNomCols[$i]=$tab['name'];
+          }
+        return $tabNomCol;
+    }
+    public function affichContenuTable()
+    {
+
+      $this->cherchNomCol();
+      echo'<tble classe="table-dark tablehover" >
+      <tbody>';
+      while($tabligne=$this->res_exec->fetch())
+      {
+        echo"<tr>";
+
+        for($i=0; $i<sizeof($tabligne);$i++){
+
+          if($i!=0)
+          {
+            if($i==3)
+            {
+              echo"<td>".$tabLigne[$i]."€</td>";
+            }
+            else
+            {
+              echo"<td>".$tabLigne[$i]."</td>";
+            }
+          }          
+        }
+
+        echo "</tr>";
+      }
+
+
+      echo' </tbody></table>';
+
     }
 
   }
- 
-  
-}
+
+
+  class MySpecialTable extends Mytable 
+	{
+		
+
+		
+		
+	}
+    /* function cherchNomCol ($_table,$_connex)
+      {
+        $rq="select * from".$_table;
+          $resultat=$_connex->query($rq);
+          $select_messages=$_db->execute();
+          $nbCols=$resultat->columnCount();
+          $tabNomCol=array();
+          for($i=0; $i<$nbCols;$i++){
+            $tab=$resultat->getColumnMeta($i);
+
+          $tabNomCols[$i]=$tab['name'];
+          }
+          //echo var_dump($tabNomCol);
+
+        return $tabNomCol;
+    } */
