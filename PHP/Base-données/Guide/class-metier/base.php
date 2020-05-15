@@ -5,14 +5,15 @@
   
     protected $db;
     private $res_exec;
+    private $table;
     //public $tabCols;
     
     public function __construct($_table)
     {
-      $this->db=self::dbconnection();
+      $this->db = self::dbconnection();
       $this->res_exec=$this->db->prepare(" select * from ".$_table);
       $this->res_exec->execute();
-
+      $this->table=$_table;
     }
 
 
@@ -34,32 +35,33 @@
       }
     }
 
-    public function cherchNomCol($_table,$_db){
+    public function cherchNomCol(){
 
-      //travail a faire
-      $rq=" select * from ".$_table;
-          $resultat=$_db->query($rq);
-          $select_messages=$_db->execute();
-          $nbCols=$resultat->columnCount();
-          $tabNomCol=array();
-          for($i=0; $i<$nbCols;$i++){
-            $tab=$resultat->getColumnMeta($i);
-
-          $tabNomCols[$i]=$tab['name'];
-          }
-        return $tabNomCol;
+      
     }
+
+    public function cherchligne($_critere, $_value)
+    {
+      $rq="SELECT * FROM ".$this->table." WHERE ".$_critere."= :valueCritere";
+
+      $rq_prepare=$this->db->prepare($rq);
+     
+      $rq_prepare->execute (array(':valueCritere'=>$_value));
+      return $rq_prepare->fetch();
+    }
+
     public function affichContenuTable()
     {
 
       $this->cherchNomCol();
-      echo'<tble classe="table-dark tablehover" >
-      <tbody>';
-      while($tabligne=$this->res_exec->fetch())
+      echo '<table class="table table-dark table-hover" ><tbody>';
+      while($tabLigne=$this->res_exec->fetch())
       {
         echo"<tr>";
+        echo'<th><a href="detail.php?id='.$tabLigne[0].'" target="_blank">Voir detail</a></th>';
+        
 
-        for($i=0; $i<sizeof($tabligne);$i++){
+        for($i=0; $i<sizeof($tabLigne);$i++){
 
           if($i!=0)
           {
@@ -83,6 +85,7 @@
     }
 
   }
+
 
 
   class MySpecialTable extends Mytable 
