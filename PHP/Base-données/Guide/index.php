@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Exercice 2 prêt bancaire Webserveur PHP </title>
+    <title>Exercice Guide Duchemin  </title>
     <style>
     input[type='text'] { margin:15px 20px; background-color:#E6E6E6;  }
 	  label { margin-left:10px;margin-right:10px}
@@ -26,7 +26,7 @@
     include("class-metier/base.php");
     
 
-    $monObjetTable=new Mytable("restaurants");
+    $monObjetTable=new myTable("restaurants");
 
     $monObjetTable->affichContenuTable();
     $options=array(
@@ -38,13 +38,14 @@
 
     $db="";
     
-    try{
-      $db = new PDO('mysql:host=localhost; dbname=guide','root','', $options);
-    } catch ( PDOException $e)
-    {
-      die("Database connection failded". $e->getMessage());
-
-      echo $e-> getMessage();
+    try {
+   
+      $db = new PDO('mysql:host=localhost;dbname=guide','root','', $options);//connection à la base
+   
+    } catch(PDOException $e) {
+      die("Database connection failed: " . $e->getMessage());
+    
+      echo $e->getMessage();//affichage message d'erreur,
     }
 
     /* function cherchNomCol ($_table)

@@ -25,19 +25,18 @@
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, 
         PDO::ATTR_CASE =>  PDO::CASE_NATURAL,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_NUM));
-      } catch ( PDOException $e) {
+      } catch( PDOException $e) {
 
         die("Database connection failded". $e->getMessage());
 
         return "erreur connexion";
 
-        echo $e-> getMessage();
       }
     }
 
-    public function cherchNomCol(){
-
-      
+    public function cherchNomCol()
+    {
+     
     }
 
     public function cherchligne($_critere, $_value)
@@ -47,7 +46,7 @@
       $rq_prepare=$this->db->prepare($rq);
      
       $rq_prepare->execute (array(':valueCritere'=>$_value));
-      return $rq_prepare->fetch();
+      return $rq_prepare->fetchAll();
     }
 
     public function affichContenuTable()
@@ -55,10 +54,10 @@
 
       $this->cherchNomCol();
       echo '<table class="table table-dark table-hover" ><tbody>';
-      while($tabLigne=$this->res_exec->fetch())
+      while($tabLigne=$this->res_exec->fetch())//methode de recupération du résultat de la requête ligne par ligne ( en mode lance à incendie)
       {
         echo"<tr>";
-        echo'<th><a href="detail.php?id='.$tabLigne[0].'" target="_blank">Voir detail</a></th>';
+        echo'<th><a href="class-metier/detail.php?id='.$tabLigne[0].'" target="_blank">Voir detail</a></th>';
         
 
         for($i=0; $i<sizeof($tabLigne);$i++){

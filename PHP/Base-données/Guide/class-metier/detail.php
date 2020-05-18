@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Exercice 2 prêt bancaire Webserveur PHP </title>
+    <title>Exercice Guide Duchemin </title>
     <style>
     input[type='text'] { margin:15px 20px; background-color:#E6E6E6;  }
 	  label { margin-left:10px;margin-right:10px}
@@ -20,15 +20,16 @@
   
   <body>
   <?php
-    include("class-metier/base.php");
+    include("base.php");
 
-    if(isset($_GET["id"])&& !empty($_GET["id"]))
+    if(isset($_GET["id"]) && !empty($_GET["id"]))
     {
       $monObjetTable= new myTable("restaurants");
 
       $rows=$monObjetTable->cherchligne("id",$_GET["id"]);
 
       //echo var_dump($table);
+      //affichage sous forme de tableau de la ligne renvoyée au cas ou cela marche...
 
       if(!empty($rows))
       {
@@ -37,7 +38,7 @@
 
         //affiche la première ligne uniquement
 
-        echo '<caption>Première ligne trouvée...</caption><table class="table table-dark table-hover" ><tr>';
+        echo '<caption>Première ligne trouvée...</caption><table class="table table-dark table-hover"><tr>';
           
         for($i=0;$i<count($rows[0]);$i++)
         {
