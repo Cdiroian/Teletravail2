@@ -58,7 +58,8 @@
       {
         echo"<tr>";
         echo'<th><a href="class-metier/detail.php?id='.$tabLigne[0].'" target="_blank">Voir detail</a></th>';
-        
+        echo'<th><a href="class-metier/suppr.php?id='.$tabLigne[1].'" target="_blank">Supprimer</a></th>';
+       
 
         for($i=0; $i<sizeof($tabLigne);$i++){
 
