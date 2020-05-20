@@ -53,6 +53,15 @@
 			    }
         }
         echo "</tr></table>";
+        echo '<br><div class="form-group form-button" id="btnsub" >
+          <input type="button" class="btn btn-primary" id="retour" name="retour" value="Retour au listing" />
+        </div>';
+
+        echo
+        "<script>
+            creation=document.getElementById('retour');
+            creation.addEventListener('click', function () { window.location.href='afficher_guide.php';}); 
+        </script>";
       }
       else
       {
@@ -61,6 +70,14 @@
     else
     {
         echo " fiche détail introuvable manque d'information" ;
+        echo '<br><div class="form-group form-button" id="btnsub" >
+          <input type="button" class="btn btn-primary" id="retour" name="retour" value="Retour au listing" />
+        </div>';
+
+        echo"<script>
+          creation=document.getElementById('retour');
+          creation.addEventListener('click', function () { window.location.href='afficher_guide.php';}); 
+        </script>";
     
     }
 

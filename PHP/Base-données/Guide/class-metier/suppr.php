@@ -20,26 +20,19 @@
   
   <body>
   <?php
-    
-
-    if(isset($_GET["id"]))
+    $dbconnex = mysqli_connect("localhost","root","","guide");
+    $id = $_GET["id"];
+    $delete = mysqli_query($dbconnex,"DELETE FROM restaurants WHERE id='$id'");     
+    if($delete)
     {
-        include_once("base.php");
-        $id = ($DB->quote($_GET["id"]));
-        
-        $delete = $DB->query("DELETE FROM restaurants WHERE id=$id");
-
-        if($delete)
-        {
-            echo "Le restaurant a bien était supprimé.";
-        }
-        else
-        {
-            echo "Erreur de suppression.";
-        }
-
-        
+      echo "Le restaurant a bien était supprimé.";
     }
+    else
+    {
+     echo "Erreur de suppression.";
+    }
+
+  
 
    
   ?>

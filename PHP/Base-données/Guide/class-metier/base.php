@@ -36,7 +36,9 @@
 
     public function cherchNomCol()
     {
-     
+      // travail a faire
+
+
     }
 
     public function cherchligne($_critere, $_value)
@@ -47,6 +49,24 @@
      
       $rq_prepare->execute (array(':valueCritere'=>$_value));
       return $rq_prepare->fetchAll();
+    }
+
+    public function insertionLigne($_nom,$_adresse,$_prix,$_commentaire,$_note,$_visite)
+    {
+      $rq="INSERT INTO restaurants ( nom, adresse, prix ( en € ), commentaire, note ( sur /10), visite) VALUES (:nom, :adresse, :prix , :commentaire, :note, :visite)";
+      $rq_prepare=$this->db->prepare($rq);
+
+      $rq_prepare->bindParam(':nom',$_nom, PDO::PARAM_STR);
+      $rq_prepare->bindParam(':adresse',$_aderesse,PDO::PARAM_STR);
+      $rq_prepare->bindParam(':prix',$_prix,PDO::PARAM_INT);
+      $rq_prepare->bindParam(':commentaire',$_commentaire,PDO::PARAM_STR);
+      $rq_prepare->bindParam(':note',$_note,PDO::PARAM_INT);
+      $rq_prepare->bindParam(':visite',$_visite,PDO::PARAM_STR);
+
+      $rq_prepare->execute();
+      $nbLigne=$rq_prepare->rowCount();
+
+      return $nbLigne;
     }
 
     public function affichContenuTable()
