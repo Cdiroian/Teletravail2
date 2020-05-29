@@ -28,8 +28,21 @@
 
     $monObjetTable=new myTable("restaurants");
 
-    $monObjetTable->affichContenuTable();
-    $options=array(
+    $macollections=$monObjetTable->chercherCollectionObj();
+
+    echo '<br><div class="form-group form-button" id="btnsub" >
+      <input type="button" class="btn btn-primary" id="nouv" name="nouv" value="Créer un nouvelle critique de restaurant !" />
+    </div>';
+    echo"
+    <script>
+      creation=document.getElementById('nouv');
+      creation.addEventListener('click', function () { window.location.href='class-metier/critique.php';}); 
+    </script>";
+    
+    $monObjetTable2= new myTable("restaurants");
+    $monObjetTable2->afficherContenueTable();
+
+    /* $options=array(
 
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, 
     PDO::ATTR_CASE =>  PDO::CASE_NATURAL,
@@ -46,7 +59,7 @@
       die("Database connection failed: " . $e->getMessage());
     
       echo $e->getMessage();//affichage message d'erreur,
-    }
+    } */
 
     /* function cherchNomCol ($_table)
     {
