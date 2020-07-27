@@ -1,0 +1,2 @@
+J'ai voulue faire un systeme de méssage flash, mais actuelement j'ai une erreur dans mon fichier base.html que je 
+tente de corriger.

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+    <meta charset="utf-8">
+    <style>
+        .flash 
+        {
+            display: block;
+            margin: 15px;
+            padding: 15px;
+            text-align: center;
+            font-family: Arial;
+            font-size: 1.1em;
+        }
+        .flash-success
+        {
+            background-color: forestgreen;
+        }
+        .flash-warning
+        {
+            background-color: orange;
+        }
+        .flash-error{
+            background-color: red;
+        }
+
+    </style>
+    <title>System de Message Flash</title>
+</head>
+<body>
+    <header>
+        <?php
+            if(!empty($_SESSION['flash']))
+            {
+                foreach ($_SESSION['flash'] as $flash)
+                {
+                    echo '<div class="flash-'.$flash["type"].'">'.$flash["message"].'</div>';
+
+                }
+                unset ($_SESSION['flash']);
+            } 
+        ?>
+    </header>
+    <div id="content">
+        <a class="btn" href="index.php?setFlash1">Bravo c'est un succés!!!</a>
+        <a class="btn" href="index.php?setFlash2">Vous n'êtes pas autorisé!!!</a>
+        <a class="btn" href="index.php?setFlash3">Alerte tentative d'intrusion?!?!</a>
+        <a class="btn" href="index.php?setFlash4">Plusieurs messages</a>
+    </div>
+
+    
+</body>
+</html>
