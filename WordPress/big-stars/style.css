@@ -1,4 +1,17 @@
 /*
 Theme Name: big-stars
-
+Author: Charly Diroian
+Description: Template WordPress exo-planéte
+Version: 0.0.1
 */
+body {
+
+}
+
+h1 {
+    color: red;
+}
+
+h2 {
+    color: green;
+}
