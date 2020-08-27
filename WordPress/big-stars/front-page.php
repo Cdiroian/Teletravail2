@@ -8,6 +8,7 @@
 // chargement du fichier "header.php"
 get_header();
 ?>
+<?= get_sidebar('homepage'); ?>
 <section class="liste">
 <h2>front-page.php</h2>
 <?php
