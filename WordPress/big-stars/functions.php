@@ -13,18 +13,37 @@
 // écrivez ci-dessous le code permettant d'activer cette fonctionnalité 
 
 
-function bigstar_post_thumbnails(){
-    add_theme_support('post-thumbnails');
+add_theme_support('post-thumbnails');
+
+
+// Activation de Widget
+add_action('widgets_init','bigstars_register_widget');
+
+function bigstars_register_widget(){
+
+    register_sidebars([
+        'id' => 'Homepage',
+        'name' => 'Sidebar Accueil'
+    ]);
 }
-add_action('after_setup_theme','bigstar_post_thumbnail');
+/* function header_widgets_init(){
 
+    register_sidebar( array('name' => 'Ma zone de widget',
+    'id' => 'New widget area',
+    'before_widget' => '<div class="nwa-widget">',
+    'after_widget' => '</div>',
+    'befor_widget' => '<h2 class="nwa-widget">',
+    'after_widget' => '</h2>'
+    )
+);
 
-
+} */
+//add_action('widget_init','header_widgets_init');
 
 // rechercher d'autres fonctionnalités d'un thème qu'on pourrait activer.
 // lister ci-dessous (dans un  bloc de commentaire) certaines fonctionnalités que vous jugez utiles
 //
-// Ajouter plus tard un Slider
+// 
 //
 //
 /*function get_the_post_thumbnail($post = null, $size= 'post-thumbnail', $attr =''){
