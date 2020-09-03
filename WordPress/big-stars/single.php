@@ -1,8 +1,9 @@
 <?php
 get_header();
 ?>
-<section class="liste">
-<h2>single.php</h2>
+<p>single.php</p>
+
+<section class="single">
 <?php
     if(have_posts()) { // si des posts sont associés à l'url demandé
                  
@@ -14,7 +15,7 @@ get_header();
             <h2>
             <a href="<?php the_permalink(); ?>"><?php the_title();?></a></h2>
             <p><?php the_date(); ?></p>
-            <div>
+            <figure>
                 <?php
                     if (has_post_thumbnail()) {
                         //the_post_thumbnail();
@@ -23,7 +24,7 @@ get_header();
                         the_post_thumbnail('thumbnail');//Image miniature
                     }
                 ?>
-            </div>
+            </figure>
             <div>
             <?php the_content(); ?>
             </div>

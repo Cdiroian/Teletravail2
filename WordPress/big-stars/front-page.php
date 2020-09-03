@@ -8,9 +8,16 @@
 // chargement du fichier "header.php"
 get_header();
 ?>
-<?= get_sidebar('homepage'); ?>
+<section class="sidebar">
+    <?php
+        if(is_active_sidebar('bigstars-principal')){
+            dynamic_sidebar('bigstars-principal');
+        }
+    ?>
+</section>
+<p>front-page.php</p>
+
 <section class="liste">
-<h2>front-page.php</h2>
 <?php
     if(have_posts()) { // si des posts sont associés à l'url demandé
                  
@@ -21,7 +28,7 @@ get_header();
         <article>
             <h2><a href="<?php the_permalink(); ?>"><?php the_title();?></a></h2>
             <p><?php the_date(); ?></p>
-            <div>
+            <figure>
                 <?php
                     if (has_post_thumbnail()) {
                         //the_post_thumbnail();
@@ -30,9 +37,9 @@ get_header();
                         the_post_thumbnail('thumbnail');//Image miniature
                     }
                 ?>
-            </div>
+            </figure>
             <div>
-            <?php the_content(); ?>
+            <?php the_excerpt(); ?>
             </div>
         </article>
         <?php
@@ -43,6 +50,6 @@ get_header();
         echo 'Contenu indisponible';
     }//fin du if
    ?>
-    </section>
+</section>
 <?php     
 get_footer();

@@ -1,1 +1,1 @@
-<?php dynamic_sidebar ('homepage') ?>
+<?php dynamic_sidebar ('bigstars-principal') ?>
